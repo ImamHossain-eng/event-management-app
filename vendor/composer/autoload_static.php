@@ -15,13 +15,13 @@ class ComposerStaticInit2d256b56e99ef5aff32a63af604abaed
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
+        'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
+        '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
-        'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
-        '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
@@ -90,6 +90,8 @@ class ComposerStaticInit2d256b56e99ef5aff32a63af604abaed
         ),
         'J' => 
         array (
+            'JeroenNoten\\LaravelPackageHelper\\' => 33,
+            'JeroenNoten\\LaravelCkEditor\\' => 28,
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
@@ -253,6 +255,14 @@ class ComposerStaticInit2d256b56e99ef5aff32a63af604abaed
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
+        ),
+        'JeroenNoten\\LaravelPackageHelper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src',
+        ),
+        'JeroenNoten\\LaravelCkEditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jeroennoten/laravel-ckeditor/src',
         ),
         'JakubOnderka\\PhpConsoleHighlighter\\' => 
         array (
@@ -1811,6 +1821,25 @@ class ComposerStaticInit2d256b56e99ef5aff32a63af604abaed
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
+        'JeroenNoten\\LaravelCkEditor\\CkEditor' => __DIR__ . '/..' . '/jeroennoten/laravel-ckeditor/src/CkEditor.php',
+        'JeroenNoten\\LaravelCkEditor\\Http\\Controllers\\Images' => __DIR__ . '/..' . '/jeroennoten/laravel-ckeditor/src/Http/Controllers/Images.php',
+        'JeroenNoten\\LaravelCkEditor\\ServiceProvider' => __DIR__ . '/..' . '/jeroennoten/laravel-ckeditor/src/ServiceProvider.php',
+        'JeroenNoten\\LaravelCkEditor\\Uploads\\ImageUploader' => __DIR__ . '/..' . '/jeroennoten/laravel-ckeditor/src/Uploads/ImageUploader.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\App' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/App.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\Assets' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/Assets.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\Blade' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/Blade.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\BladeDirective' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/BladeDirective.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\Config' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/Config.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\Migrations' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/Migrations.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\Name' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/Name.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\Path' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/Path.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\PublicAssets' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/PublicAssets.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\Publishes' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/Publishes.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\Slug' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/Slug.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\Tag' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/Tag.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\Translations' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/Translations.php',
+        'JeroenNoten\\LaravelPackageHelper\\ServiceProviderTraits\\Views' => __DIR__ . '/..' . '/jeroennoten/laravel-package-helper/src/ServiceProviderTraits/Views.php',
         'JsonSerializable' => __DIR__ . '/..' . '/nesbot/carbon/src/JsonSerializable.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',

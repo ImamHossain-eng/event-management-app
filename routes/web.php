@@ -36,3 +36,12 @@ Route::prefix('admin')->group(function () {
   Route::get('/list', 'ViewController@admin_list')->name('admin.list');
 
 });
+
+
+Route::get('/test', function () {
+  return view('admin.fo');
+});
+Route::post('/test', 'ViewController@venue_store')->name('venue.store');
+Route::get('/hi', function () {
+  return view('admin.hi');
+});
