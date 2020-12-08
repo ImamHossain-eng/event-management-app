@@ -5,17 +5,14 @@
 <!--Header-->
 @include('parts.modal')
 
-@include('parts.history')
-
+<!--history-->
 @include('parts.our_work')
-
+<!--package price-->
 @include('parts.pricing')
-
+<!--Team-->
+@include('parts.history')
 <!-- Contact Container -->
 @include('parts.contact')
-
-<!-- Footer -->
-
 
 <script>
 // Script for side navigation

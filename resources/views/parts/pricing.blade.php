@@ -1,6 +1,6 @@
 <!-- Pricing Row -->
 <div class="w3-row-padding w3-center w3-padding-64" id="pricing">
-    <h2>PRICING</h2>
+    <h2>PACKAGE & PRICING</h2>
     <p>Choose a pricing plan that fits your needs.</p><br>
     <div class="w3-third w3-margin-bottom">
       <ul class="w3-ul w3-border w3-hover-shadow">
