@@ -35,6 +35,24 @@ Route::prefix('admin')->group(function () {
   //Show available admin
   Route::get('/list', 'ViewController@admin_list')->name('admin.list');
 
+  //Staffs CRUD Operation
+  Route::get('/staffs', 'BackController@staff_index')->name('admin.staffs');
+  Route::get('/staffs/create', 'BackController@staff_create')->name('admin.staff.create');
+  Route::post('/staffs', 'BackController@staff_store')->name('admin.staff.store');
+  Route::delete('/staffs/{id}', 'BackController@staff_destroy')->name('admin.staff.destroy');
+  Route::get('/staffs/{id}/edit', 'BackController@staff_edit')->name('admin.staff.edit');
+  Route::put('staffs/{id}', 'BackController@staff_update')->name('admin.staff.update');
+
+  
+
+  /*
+  
+Route::get('staffs/{id}/edit', 'noticesController@staff_edit');
+Route::put('staffs/{id}', 'noticesController@staff_update')->name('staffs.update');
+Route::get('staffs/{id}', 'staffController@staff_show');
+
+  */
+
 });
 
 

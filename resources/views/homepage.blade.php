@@ -10,7 +10,7 @@
 <!--package price-->
 @include('parts.pricing')
 <!--Team-->
-@include('parts.history')
+@include('parts.team')
 <!-- Contact Container -->
 @include('parts.contact')
 
