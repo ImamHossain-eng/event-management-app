@@ -27,9 +27,12 @@
 <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
   <button class="w3-bar-item w3-button w3-large"
   onclick="w3_close()">Close &times;</button>
+  @if(Auth::user()->id===7)
   <a href="/admin/register" class="w3-bar-item w3-button">Create New Admin</a>
+  @endif
   <a href="/admin/list" class="w3-bar-item w3-button">Show Admin List</a>
   <a href="/admin/staffs" class="w3-bar-item w3-button">All Staff List</a>
+  <a href="/admin/feedback" class="w3-bar-item w3-button">Feedbacks</a>
   <a href="#" class="w3-bar-item w3-button">Link 3</a>
   <div>
         <a class="w3-bar-item w3-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

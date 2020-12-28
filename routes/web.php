@@ -10,10 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'FrontController@index')->name('index');
+Route::post('/', 'FrontController@feedback_message');
 
-Route::get('/', function () {
-    return view('homepage');
-});
 //Route::post('/', 'ViewController@contact')->name('contact.store');
 
 
@@ -34,7 +33,10 @@ Route::prefix('admin')->group(function () {
 
   //Show available admin
   Route::get('/list', 'ViewController@admin_list')->name('admin.list');
-
+  //Show feedback and manage
+  Route::get('/feedback', 'BackController@feedback_index')->name('admin.feedback_index');
+  Route::delete('/feedback/{id}', 'BackController@feedback_destroy')->name('admin.feedback_destroy');
+  
   //Staffs CRUD Operation
   Route::get('/staffs', 'BackController@staff_index')->name('admin.staffs');
   Route::get('/staffs/create', 'BackController@staff_create')->name('admin.staff.create');
@@ -42,18 +44,14 @@ Route::prefix('admin')->group(function () {
   Route::delete('/staffs/{id}', 'BackController@staff_destroy')->name('admin.staff.destroy');
   Route::get('/staffs/{id}/edit', 'BackController@staff_edit')->name('admin.staff.edit');
   Route::put('staffs/{id}', 'BackController@staff_update')->name('admin.staff.update');
-
+  //Venue CRUD Operation
+  Route::get('/venues', 'BackController@venue_index')->name('admin.venue');
   
-
-  /*
-  
-Route::get('staffs/{id}/edit', 'noticesController@staff_edit');
-Route::put('staffs/{id}', 'noticesController@staff_update')->name('staffs.update');
-Route::get('staffs/{id}', 'staffController@staff_show');
-
-  */
 
 });
+
+//staffs view route is open to anyone
+Route::get('/staffs/{id}', 'FrontController@staff_show');
 
 
 Route::get('/test', function () {

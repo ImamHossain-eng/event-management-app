@@ -9,26 +9,25 @@
       <p><i class="fa fa-envelope-o w3-text-teal w3-xlarge"></i>  test@test.com</p>
     </div>
     <div class="w3-col m7">
-      <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="/action_page.php" target="_blank">
+
+      <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="/" method="POST">
+        {{csrf_field()}}
       <div class="w3-section">      
         <label>Name</label>
-        <input class="w3-input" type="text" name="Name" required>
+        <input class="w3-input" type="text" name="name" required>
       </div>
       <div class="w3-section">      
         <label>Email</label>
-        <input class="w3-input" type="text" name="Email" required>
+        <input class="w3-input" type="text" name="email" required>
       </div>
       <div class="w3-section">      
         <label>Message</label>
-        <input class="w3-input" type="text" name="Message" required>
+        <input class="w3-input" type="text" name="message" required>
       </div>  
-      <input class="w3-check" type="checkbox" checked name="Like">
+      <input class="w3-check" type="checkbox" checked name="like">
       <label>I Like it!</label>
-      <button type="submit" class="w3-button w3-right w3-theme">Send</button>
-      </form>
+      {{ Form::submit('Send', ['class' => 'w3-button w3-right']) }}
+      {{ Form::close() }}
     </div>
   </div>
 </div>
-
-<!-- Image of location/map -->
-<img src="/w3images/map.jpg" class="w3-image w3-greyscale-min" style="width:100%;">

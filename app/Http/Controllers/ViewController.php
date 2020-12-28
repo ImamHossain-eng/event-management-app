@@ -38,7 +38,7 @@ class ViewController extends Controller
         $admins->save();
 
 
-        return redirect()->route('admin.auth.login');
+        return redirect()->route('admin.dashboard');
 
     }
     //show all available admins

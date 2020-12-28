@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Staff;
+use App\Feedback;
+use App\Venue;
 use Image;
 use File;
 
@@ -94,6 +96,20 @@ class BackController extends Controller
         $staff->save();
         return redirect()->route('admin.staffs')->with('Successfully Updated');
     }
+    //show all feedbacks
+    public function feedback_index(){
+        $feeds = Feedback::all();
+        return view('admin.pages.feedback_index', compact('feeds'));
+    }
+    //destroy feedback
+    public function feedback_destroy($id){
+        Feedback::find($id)->delete();
+        return redirect()->route('admin.feedback_index');
 
+    }
+    //Venue Crud start from here
+    public function venue_index(){
+        return 123;
+    }
 
 }

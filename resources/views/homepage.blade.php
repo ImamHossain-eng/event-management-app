@@ -38,11 +38,5 @@ function openNav() {
   }
 }
 </script>
-
-
-
-
-
-
 </body>
 @endsection
