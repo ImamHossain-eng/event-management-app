@@ -109,7 +109,45 @@ class BackController extends Controller
     }
     //Venue Crud start from here
     public function venue_index(){
-        return 123;
+        $venues = Venue::all();
+        return view('admin.pages.venue_index', compact('venues'));
+    }
+    public function venue_create(){
+        return view('admin.pages.venue_create');
+    }
+    public function venue_store(Request $request){
+        //validation
+        $this->validate($request, [
+            'name' => 'required',
+            'pricing' => 'required',
+            'capacity' => 'required',
+        ]);
+        //save the image
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            Image::make($file)->resize(700, 400)->save(public_path('/images/venues/'.$file_name));
+        }
+        else{
+            $file_name = 'no_image.jpg';
+        }
+        //Initiate new Venue
+        $venue = new Venue;
+
+        $venue->name = $request->input('name');
+        $venue->capacity = $request->input('capacity');
+        $venue->pricing = $request->input('pricing');
+        $venue->venue_tag = $request->input('venue_tag');
+        $venue->body = $request->input('body');
+        $venue->image = $file_name;
+
+        $venue->save();
+
+        return redirect()->route('admin.venue');
+
+
+
     }
 
 }

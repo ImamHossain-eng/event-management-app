@@ -46,7 +46,9 @@ Route::prefix('admin')->group(function () {
   Route::put('staffs/{id}', 'BackController@staff_update')->name('admin.staff.update');
   //Venue CRUD Operation
   Route::get('/venues', 'BackController@venue_index')->name('admin.venue');
-  
+  Route::get('/venues/create', 'BackController@venue_create')->name('admin.venue_create');
+  Route::post('/venues', 'BackController@venue_store')->name('admin.venue_store');
+
 
 });
 
