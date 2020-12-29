@@ -17,7 +17,9 @@
           <span class="w3-opacity">per day</span>
         </li>
         <li class="w3-theme-l5 w3-padding-24">
-          <button class="w3-button w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
+          <a href="/login">
+            <button class="w3-button w3-teal w3-padding-large"><i class="fa fa-check"></i>Sign Up</button>
+          </a>
         </li>
       </ul>
     </div>
