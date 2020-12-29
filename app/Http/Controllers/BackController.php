@@ -79,7 +79,7 @@ class BackController extends Controller
             $extension = $file->getClientOriginalExtension();
             $file_name = time().'.'.$extension;
             Image::make($file)->resize(500, 550)->save( public_path('/images/staffs/'.$file_name));
-            if($old != 'no_image.jpg'){
+            if($oldImg != 'no_image.jpg'){
             File::delete( public_path('/images/staffs/'. $oldImg));
             }
         }
@@ -107,6 +107,7 @@ class BackController extends Controller
         return redirect()->route('admin.feedback_index');
 
     }
+
     //Venue Crud start from here
     public function venue_index(){
         $venues = Venue::all();
@@ -146,8 +147,51 @@ class BackController extends Controller
 
         return redirect()->route('admin.venue');
 
+    }
+    public function venue_destroy($id){
+        $venue = Venue::find($id);
+        $venue->delete();
+        return redirect()->route('admin.venue');
+    }
+    public function venue_edit($id){
+        $venue = Venue::find($id);
+        return view('admin.pages.venue_edit', compact('venue'));
+    }
+    public function venue_update(Request $request, $id){
+        //validation
+        $this->validate($request, [
+            'name' => 'required',
+            'pricing' => 'required',
+            'capacity' => 'required',
+        ]);
 
+        $venue = Venue::find($id);
+        $oldImg = $venue->image; 
 
+        //save the image
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            Image::make($file)->resize(700, 400)->save(public_path('/images/venues/'.$file_name));
+            if($oldImg != 'no_image.jpg'){
+                File::delete( public_path('/images/venues/'. $oldImg));
+            }
+        }
+        else{
+            $file_name = $oldImg;
+        }
+
+        $venue->name = $request->input('name');
+        $venue->capacity = $request->input('capacity');
+        $venue->pricing = $request->input('pricing');
+        $venue->venue_tag = $request->input('venue_tag');
+        $venue->body = $request->input('body');
+        $venue->image = $file_name;
+
+        $venue->save();
+
+        return redirect()->route('admin.venue');
     }
 
 }

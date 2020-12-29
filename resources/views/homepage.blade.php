@@ -3,7 +3,7 @@
 <body>
     
 <!--Header-->
-@include('parts.modal')
+@include('parts.slider')
 
 <!--history-->
 @include('parts.our_work')

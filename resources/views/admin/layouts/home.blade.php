@@ -33,6 +33,7 @@
   <a href="/admin/list" class="w3-bar-item w3-button">Show Admin List</a>
   <a href="/admin/staffs" class="w3-bar-item w3-button">All Staff List</a>
   <a href="/admin/feedback" class="w3-bar-item w3-button">Feedbacks</a>
+  <a href="/admin/venues" class="w3-bar-item w3-button">Venues</a>
   <a href="#" class="w3-bar-item w3-button">Link 3</a>
   <div>
         <a class="w3-bar-item w3-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

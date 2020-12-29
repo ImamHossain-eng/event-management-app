@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Staff;
 use App\Feedback;
+use App\Venue;
 
 class FrontController extends Controller
 {
     public function index(){
         $staffs = Staff::orderBy('created_at', 'asc')->get()->take(4);
-        return view('homepage', compact('staffs'));
+        $venues = Venue::orderBy('created_at', 'asc')->get()->take(3);
+        return view('homepage', compact('staffs', 'venues'));
     }
     public function staff_show($id){
         $staff = Staff::find($id);

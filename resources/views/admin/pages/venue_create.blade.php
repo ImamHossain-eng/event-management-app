@@ -16,8 +16,13 @@
 <div class="from-group">
 	<input type="text" name="pricing" class="form-control" Placeholder="Pricing">
 </div><br>
-<div class="from-group">
-	<input type="text" name="venue_tag" class="form-control" Placeholder="Category">
+<div class="form-group">
+	<label for="">Category</label>
+	<select name="venue_tag" id="">
+		<option value="Basic">Basic</option>
+		<option value="Pro">Pro</option>
+		<option value="Premium">Premium</option>
+	</select>
 </div><br>
 <div class="form-group">
 	<label for="">Upload Profile Picture</label>

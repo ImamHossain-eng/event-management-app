@@ -48,6 +48,9 @@ Route::prefix('admin')->group(function () {
   Route::get('/venues', 'BackController@venue_index')->name('admin.venue');
   Route::get('/venues/create', 'BackController@venue_create')->name('admin.venue_create');
   Route::post('/venues', 'BackController@venue_store')->name('admin.venue_store');
+  Route::delete('/venues/{id}', 'BackController@venue_destroy')->name('admin.venue_destroy');
+  Route::get('/venues/{id}/edit', 'BackController@venue_edit')->name('admin.venue_edit');
+  Route::put('/venues/{id}', 'BackController@venue_update')->name('admin.venue_update');
 
 
 });
