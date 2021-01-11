@@ -1,2 +1,2 @@
-email: admin@gmail.com
-Pass: admin123
+master-admin[ email: admin@gmail.com, Pass: admin123]
+admin[email:sojib@gmail.com, Pass: sojib123]

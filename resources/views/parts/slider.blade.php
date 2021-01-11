@@ -1,24 +1,32 @@
-<!-- Image Header -->
-<div class="w3-display-container w3-animate-opacity">
-  <img src="{{asset('images/pathway2.jpg')}}" alt="boat" style="width:100%;min-height:350px;max-height:500px;">
-  <div class="w3-container w3-display-bottomleft w3-margin-bottom">  
-    <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-xlarge w3-theme w3-hover-teal" title="Go To W3.CSS">Show Modal</button>
-  </div>
-</div>
+<head>
+  <style type="text/css">
+    .carousel-item{
+      height:70vh;
+    }
+  </style>
+</head>
+<body>
 
-<!-- Modal -->
-<div id="id" class="w3-modal">
-  <div class="w3-modal-content w3-card-4 w3-animate-top">
-    <header class="w3-container w3-teal w3-display-container"> 
-      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
-      <h4>Oh snap! We just showed you a modal..</h4>
-      <h5>Because we can <i class="fa fa-smile-o"></i></h5>
-    </header>
-    <div class="w3-container">
-      <p>Cool huh? Ok, enough teasing around..</p>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{{asset('images/slider/abc.jpg')}}" alt="First slide">
     </div>
-    <footer class="w3-container w3-teal">
-      <p>Modal footer</p>
-    </footer>
+    @foreach($photos as $photo)
+    <div class="carousel-item">
+      <img class="d-block w-100" src="images/slider/{{$photo->image}}" alt="Second slide">
+    </div>
+    @endforeach
   </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
+  
+</body>

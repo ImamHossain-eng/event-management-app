@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Staff;
 use App\Feedback;
 use App\Venue;
+use App\Photo;
+use App\Food;
+use App\Photography;
+use App\Sound;
 use Image;
 use File;
 
@@ -192,6 +196,282 @@ class BackController extends Controller
         $venue->save();
 
         return redirect()->route('admin.venue');
+    }
+    //Photo Crud
+    public function photo_index(){
+        $photos = Photo::all();
+        return view('admin.pages.photo_index', compact('photos'));
+    }
+    public function photo_create(){
+        return view('admin.pages.photo_create');
+    }
+    public function photo_store(Request $request){
+        $this->validate($request, ['image'=>'required', 'type'=>'required']);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+
+            Image::make($file)->resize(1000, 400)->save(public_path('images/slider/'.$file_name));
+        }
+        else{
+            return redirect()->route('photo.create')
+            ->with('error', 'Please Select any Photo');
+        }
+         $photo = new Photo;
+         $photo->type = $request->input('type');
+         $photo->image = $file_name;
+         $photo->save();
+         return redirect()->route('admin.photo')->with('success', 'Successfully Uploaded');
+    }
+    public function photo_destroy($id){
+        $photo = Photo::find($id);
+        $old = $photo->image;
+        File::delete(public_path('/images/slider/'.$old));
+        $photo->delete();
+        return redirect()->route('admin.photo');
+    }
+    public function food_index(){
+        $foods = Food::all();
+        return view('admin.pages.food_index', compact('foods'));
+    }
+    public function food_create(){
+        return view('admin.pages.food_create');
+    }
+    public function food_store(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'category' => 'required'
+        ]);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            Image::make($file)->resize(1000, 400)->save(public_path('images/food/'.$file_name));
+        }
+        else{
+            $file_name = 'no_image.jpg';
+        }
+
+        $food = new Food;
+
+        $food->name = $request->input('name');
+        $food->price = $request->input('price');
+        $food->category = $request->input('category');
+        $food->details = $request->input('details');
+        $food->image = $file_name;
+
+        $food->save();
+        return redirect()->route('admin.food_index');
+    }
+    public function food_destroy($id){
+        $food = Food::find($id);
+        //delete food old image
+        $old = $food->image;
+        if($old != 'no_image.jpg'){
+            File::delete(public_path('/images/food/'.$old));
+        }
+        $food->delete();
+        return redirect()->route('admin.food_index');
+    }
+    public function food_edit($id){
+        $food = Food::find($id);
+        return view('admin.pages.food_edit', compact('food'));
+    }
+    public function food_update(Request $request, $id){
+        $food = Food::find($id);
+        $oldImg = $food->image;
+
+        //validation
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'category' => 'required'
+        ]);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            Image::make($file)->resize(1000, 400)->save(public_path('images/food/'.$file_name));
+            if($oldImg != 'no_image.jpg'){
+                File::delete( public_path('/images/venues/'. $oldImg));
+            }
+
+        }
+        else{
+            $file_name = $oldImg;
+        }
+
+        $food->name = $request->input('name');
+        $food->price = $request->input('price');
+        $food->category = $request->input('category');
+        $food->details = $request->input('details');
+        $food->image = $file_name;
+
+        $food->save();
+        return redirect()->route('admin.food_index');
+    }
+    //photography crud
+    public function photos_index(){
+        $photos = Photography::all();
+        return view('admin.pages.photos_index', compact('photos'));
+    }
+    public function photos_create(){
+        return view('admin.pages.photos_create');
+    }
+    public function photos_store(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'category' => 'required'
+        ]);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            Image::make($file)->resize(1000, 400)->save(public_path('images/photography/'.$file_name));
+        }
+        else{
+            $file_name = 'no_image.jpg';
+        }
+
+        $food = new Photography;
+
+        $food->name = $request->input('name');
+        $food->price = $request->input('price');
+        $food->category = $request->input('category');
+        $food->image = $file_name;
+
+        $food->save();
+        return redirect()->route('admin.photos_index');
+    }
+    public function photos_destroy($id){
+        $photo = Photography::find($id);
+        //delete old pic
+        $old = $photo->image;
+        if($old != 'no_image.jpg'){
+            File::delete(public_path('/images/photography/'.$old));
+        }
+        $photo->delete();
+        return redirect()->route('admin.photos_index');
+    }
+    public function photos_edit($id){
+        $photo = Photography::find($id);
+        return view('admin.pages.photos_edit', compact('photo'));
+    }
+    public function photos_update(Request $request, $id){
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'category' => 'required'
+        ]);
+        $photo = Photography::find($id);
+        $oldImg = $photo->image;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            Image::make($file)->resize(1000, 400)->save(public_path('images/photography/'.$file_name));
+            if($oldImg != 'no_image.jpg'){
+                File::delete( public_path('/images/photography/'. $oldImg));
+            }
+
+        }
+        else{
+            $file_name = $oldImg;
+        }
+
+        $photo->name = $request->input('name');
+        $photo->price = $request->input('price');
+        $photo->category = $request->input('category');
+        $photo->image = $file_name;
+
+        $photo->save();
+        return redirect()->route('admin.photos_index');
+    }
+    public function sounds_index(){
+        $sounds = Sound::all();
+        return view('admin.pages.sound_index', compact('sounds'));
+    }
+    public function sounds_create(){
+        return view('admin.pages.sound_create');
+    }
+    public function sounds_store(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'category' => 'required'
+        ]);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            Image::make($file)->resize(1000, 400)->save(public_path('images/sound/'.$file_name));
+        }
+        else{
+            $file_name = 'no_image.jpg';
+        }
+
+        $sound = new Sound;
+
+        $sound->name = $request->input('name');
+        $sound->price = $request->input('price');
+        $sound->category = $request->input('category');
+        $sound->image = $file_name;
+
+        $sound->save();
+        return redirect()->route('admin.sounds_index');
+    }
+    public function sounds_destroy($id){
+        $sound = Sound::find($id);
+        //Old image delete
+        $oldImg = $sound->image;
+        if($oldImg != 'no_image.jpg'){
+            File::delete(public_path('images/sound/'.$oldImg));
+        }
+        $sound->delete();
+        return redirect()->route('admin.sounds_index');
+    }
+    public function sounds_edit($id){
+        $sound = Sound::find($id);
+        return view('admin.pages.sounds_edit', compact('sound'));
+    }
+    public function sounds_update(Request $request, $id){
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'category' => 'required'
+        ]);
+
+        $sound = Sound::find($id);
+        $oldImg = $sound->image;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            Image::make($file)->resize(1000, 400)->save(public_path('images/sound/'.$file_name));
+            if($oldImg != 'no_image.jpg'){
+                File::delete(public_path('images/sound/'.$oldImg));
+            }
+        }
+        else{
+            $file_name = $oldImg;
+        }
+
+
+        $sound->name = $request->input('name');
+        $sound->price = $request->input('price');
+        $sound->category = $request->input('category');
+        $sound->image = $file_name;
+
+        $sound->save();
+        return redirect()->route('admin.sounds_index');
+
     }
 
 }

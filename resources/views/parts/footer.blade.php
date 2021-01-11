@@ -12,4 +12,5 @@
     <a class="w3-button w3-theme" href="#myPage"><span class="w3-xlarge">
     <i class="fa fa-chevron-circle-up"></i></span></a>
   </div>
+  <p>Copyright &copy; 2021 <a href="#">Roman + Sojib</a>  All Rights Reserved.
 </footer>

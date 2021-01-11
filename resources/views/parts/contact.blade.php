@@ -3,7 +3,7 @@
     <div class="w3-col m5">
     <div class="w3-padding-16"><span class="w3-xlarge w3-border-teal w3-bottombar">Contact Us</span></div>
       <h3>Address</h3>
-      <p><i class="fa fa-map-marker w3-text-teal w3-xlarge"></i>  Gazaria, Munshigonj, Postal Address-1510</p>
+      <p><i class="fa fa-map-marker w3-text-teal w3-xlarge"></i>  Gazaria, Munshigonj-1510</p>
       <p><i class="fa fa-phone w3-text-teal w3-xlarge"></i>  +00 1757438542</p>
       <p><i class="fa fa-envelope-o w3-text-teal w3-xlarge"></i>  test@test.com</p>
     </div>

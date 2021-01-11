@@ -46,4 +46,9 @@ class ViewController extends Controller
         $admins = Admin::all();
         return view('admin.pages.admin_list', compact('admins'));
     }
+    public function admin_destroy($id){
+        $admin = Admin::find($id);
+        $admin->delete();
+        return redirect()->route('admin.list');
+    }
 }

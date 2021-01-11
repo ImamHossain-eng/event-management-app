@@ -19,10 +19,11 @@
 </div><br>
 <div class="form-group">
 	<label for="">Category</label>
-<select name="venue_tag" id="" value="{{$venue->venue_tag}}">
-		<option value="Basic">Basic</option>
-		<option value="Pro">Pro</option>
-		<option value="Premium">Premium</option>
+<div class="from-group">
+	<select name="category">
+		<option value="poor">Poor</option>
+		<option value="middle">Middle Class</option>
+		<option value="rich">Rich</option>
 	</select>
 </div><br>
 

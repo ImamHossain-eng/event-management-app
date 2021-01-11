@@ -34,6 +34,10 @@
   <a href="/admin/staffs" class="w3-bar-item w3-button">All Staff List</a>
   <a href="/admin/feedback" class="w3-bar-item w3-button">Feedbacks</a>
   <a href="/admin/venues" class="w3-bar-item w3-button">Venues</a>
+  <a href="/admin/photos" class="w3-bar-item w3-button">Photography</a>
+   <a href="/admin/sounds" class="w3-bar-item w3-button">Sounds & Lighting</a>
+  <a href="/admin/foods" class="w3-bar-item w3-button">Foods</a>
+  <a href="/admin/images" class="w3-bar-item w3-button">Photos</a>
   <a href="#" class="w3-bar-item w3-button">Link 3</a>
   <div>
         <a class="w3-bar-item w3-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
