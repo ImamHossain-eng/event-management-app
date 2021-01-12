@@ -78,6 +78,14 @@ Route::prefix('admin')->group(function () {
   Route::get('/sounds/{id}/edit', 'BackController@sounds_edit')->name('admin.sounds_edit');
   Route::put('/sounds/{id}', 'BackController@sounds_update')->name('admin.sounds_update');
 
+  //Stages and decoration crud
+  Route::get('/stages', 'BackController@stages_index')->name('admin.stages_index');
+  Route::get('/stages/create', 'BackController@stages_create')->name('admin.stages_create');
+  Route::post('/stages', 'BackController@stages_store')->name('admin.stages_store');
+  Route::delete('/stages/{id}', 'BackController@stages_destroy')->name('admin.stages_destroy');
+  Route::get('/stages/{id}/edit', 'BackController@stages_edit')->name('admin.stages_edit');
+  Route::put('/stages/{id}', 'BackController@stages_update')->name('admin.stages_update');
+
 
   //Photo Crud
   Route::get('/images', 'BackController@photo_index')->name('admin.photo');
@@ -89,7 +97,6 @@ Route::prefix('admin')->group(function () {
 
 
 });
-
 
 
 //staffs view route is open to anyone
@@ -106,6 +113,9 @@ Route::get('/photography/{id}', 'FrontController@photo_show');
 //Sound and lighting
 Route::get('/sounds', 'FrontController@sound_item');
 Route::get('/sounds/{id}', 'FrontController@sound_show');
+//Decoration services
+Route::get('/decoration', 'FrontController@decoration');
+Route::get('/decoration/{id}', 'FrontController@decoration_show');
 
 
 

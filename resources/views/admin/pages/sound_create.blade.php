@@ -23,7 +23,10 @@
 <div class="form-group">
 	<label for="">Upload Profile Picture</label>
 	<input type="file" name="image">
-</div>
+</div><br>
+<div class="form-group">
+    <textarea class="textarea" name="body2" id="ckview" cols="30" rows="10" placeholder="Description"></textarea>
+</div><br>
 <input type="submit" name="Submit" value="Save" class="btn btn-primary"><br>
 {{Form::close()}}
 

@@ -10,6 +10,7 @@ use App\Photo;
 use App\Food;
 use App\Photography;
 use App\Sound;
+use App\Stage;
 use Image;
 use File;
 
@@ -342,6 +343,7 @@ class BackController extends Controller
         $food->name = $request->input('name');
         $food->price = $request->input('price');
         $food->category = $request->input('category');
+        $food->body = $request->input('body'); 
         $food->image = $file_name;
 
         $food->save();
@@ -367,7 +369,9 @@ class BackController extends Controller
             'price' => 'required',
             'category' => 'required'
         ]);
+
         $photo = Photography::find($id);
+
         $oldImg = $photo->image;
 
         if ($request->hasFile('image')) {
@@ -378,7 +382,6 @@ class BackController extends Controller
             if($oldImg != 'no_image.jpg'){
                 File::delete( public_path('/images/photography/'. $oldImg));
             }
-
         }
         else{
             $file_name = $oldImg;
@@ -387,6 +390,7 @@ class BackController extends Controller
         $photo->name = $request->input('name');
         $photo->price = $request->input('price');
         $photo->category = $request->input('category');
+        $photo->body = $request->input('body'); 
         $photo->image = $file_name;
 
         $photo->save();
@@ -421,6 +425,7 @@ class BackController extends Controller
         $sound->name = $request->input('name');
         $sound->price = $request->input('price');
         $sound->category = $request->input('category');
+        $sound->body2 = $request->input('body2');
         $sound->image = $file_name;
 
         $sound->save();
@@ -467,11 +472,97 @@ class BackController extends Controller
         $sound->name = $request->input('name');
         $sound->price = $request->input('price');
         $sound->category = $request->input('category');
+        $sound->body2 = $request->input('body2');
         $sound->image = $file_name;
 
         $sound->save();
         return redirect()->route('admin.sounds_index');
 
+    }
+    //decoration crud
+    public function stages_index(){
+        $stages = Stage::all();
+        return view('admin.pages.stages_index', compact('stages'));
+    }
+    public function stages_create(){
+        return view('admin.pages.stages_create');
+    }
+    public function stages_store(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'type' => 'required',
+            'category' => 'required'
+        ]);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            Image::make($file)->resize(1000, 400)->save(public_path('images/decoration/'.$file_name));
+        }
+        else{
+            $file_name = 'no_image.jpg';
+        }
+
+        $stage = new Stage;
+
+        $stage->name = $request->input('name');
+        $stage->price = $request->input('price');
+        $stage->type = $request->input('type');
+        $stage->category = $request->input('category');
+        $stage->body = $request->input('body');
+        $stage->image = $file_name;
+
+        $stage->save();
+        return redirect()->route('admin.stages_index');
+    }
+    public function stages_destroy($id){
+        $stage = Stage::find($id);
+        $oldImg = $stage->image;
+        if($oldImg != 'no_image.jpg'){
+            File::delete(public_path('images/decoration/'.$oldImg));
+        }
+        $stage->delete();
+        return redirect()->route('admin.stages_index');
+    }
+    public function stages_edit($id){
+        $stage = Stage::find($id);
+        return view('admin.pages.stages_edit', compact('stage'));
+    }
+    public function stages_update(Request $request, $id){
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'type' => 'required',
+            'category' => 'required'
+        ]);
+
+        $stage = Stage::find($id);
+        $old = $stage->image;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            Image::make($file)->resize(1000, 400)->save(public_path('images/decoration/'.$file_name));
+            if($old != 'no_image.jpg'){
+                File::delete(public_path('images/decoration/'.$old));
+            }
+        }
+        else{
+            $file_name = $old;
+        }
+
+        $stage->name = $request->input('name');
+        $stage->price = $request->input('price');
+        $stage->type = $request->input('type');
+        $stage->category = $request->input('category');
+        $stage->body = $request->input('body');
+        $stage->image = $file_name;
+
+        $stage->save();
+        return redirect()->route('admin.stages_index');
     }
 
 }

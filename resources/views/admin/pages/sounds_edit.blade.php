@@ -24,7 +24,11 @@
 <div class="form-group">
 	<label for="">Upload Profile Picture</label>
 	<input type="file" name="image">
-</div>
+</div><br>
+<div class="form-group">
+			{{ Form::label('body2', 'Body')}}
+			{{ Form::textarea('body2',$sound->body2, ['class'=>'form-control', 'id'=>'ckview' , 'placeholder'=>'Body Text']) }}		
+		</div><br>
 <input type="submit" name="Submit" value="Save" class="btn btn-primary"><br>
 {{Form::close()}}
 

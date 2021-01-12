@@ -6,7 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddBody2ToSounds' => $baseDir . '/database/migrations/2021_01_12_142852_add_body2_to_sounds.php',
+    'AddBodyToPhotographies' => $baseDir . '/database/migrations/2021_01_12_135549_add_body_to_photographies.php',
     'AddDetailsToFoods' => $baseDir . '/database/migrations/2021_01_11_160930_add_details_to_foods.php',
+    'AddImageToStages' => $baseDir . '/database/migrations/2021_01_12_153900_add_image_to_stages.php',
     'App\\Admin' => $baseDir . '/app/Admin.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -37,6 +40,7 @@ return array(
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Sound' => $baseDir . '/app/Sound.php',
     'App\\Staff' => $baseDir . '/app/Staff.php',
+    'App\\Stage' => $baseDir . '/app/Stage.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\Venue' => $baseDir . '/app/Venue.php',
     'ArithmeticError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
@@ -64,6 +68,7 @@ return array(
     'CreatePhotosTable' => $baseDir . '/database/migrations/2021_01_06_145431_create_photos_table.php',
     'CreateSoundsTable' => $baseDir . '/database/migrations/2021_01_09_160809_create_sounds_table.php',
     'CreateStaffTable' => $baseDir . '/database/migrations/2020_12_24_101002_create_staff_table.php',
+    'CreateStagesTable' => $baseDir . '/database/migrations/2021_01_12_145011_create_stages_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000001_create_users_table.php',
     'CreateVenuesTable' => $baseDir . '/database/migrations/2020_12_28_154411_create_venues_table.php',
     'Cron\\AbstractField' => $vendorDir . '/mtdowling/cron-expression/src/Cron/AbstractField.php',

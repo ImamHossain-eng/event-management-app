@@ -9,6 +9,7 @@ use App\Venue;
 use App\Photo;
 use App\Food;
 use App\Photography;
+use App\Stage;
 use App\Sound;
 
 class FrontController extends Controller
@@ -69,5 +70,14 @@ class FrontController extends Controller
     public function sound_show($id){
         $sound = Sound::find($id);
         return view('pages.sounds_show', compact('sound'));
+    }
+    public function decoration(){
+        //$stages = Stage::orderby('created_at', 'desc')->where('type', 'stage')->get();
+        $stages = Stage::orderby('created_at', 'desc')->simplePaginate(3);
+        return view('pages.decoration', compact('stages'));
+    }
+    public function decoration_show($id){
+        $stage = Stage::find($id);
+        return view('pages.stage_show', compact('stage'));
     }
 }

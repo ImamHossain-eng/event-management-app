@@ -14,7 +14,7 @@
       <a href="/venues" class="w3-bar-item w3-button">Venue</a>
       <a href="/photography" class="w3-bar-item w3-button">Photography</a>
       <a href="/sounds" class="w3-bar-item w3-button">Sound System & Lighting</a>
-      <a href="#" class="w3-bar-item w3-button">Decoration</a>
+      <a href="/decoration" class="w3-bar-item w3-button">Decoration</a>
 
     </div>
   </div>

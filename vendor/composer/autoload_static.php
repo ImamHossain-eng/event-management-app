@@ -350,7 +350,10 @@ class ComposerStaticInit2d256b56e99ef5aff32a63af604abaed
     );
 
     public static $classMap = array (
+        'AddBody2ToSounds' => __DIR__ . '/../..' . '/database/migrations/2021_01_12_142852_add_body2_to_sounds.php',
+        'AddBodyToPhotographies' => __DIR__ . '/../..' . '/database/migrations/2021_01_12_135549_add_body_to_photographies.php',
         'AddDetailsToFoods' => __DIR__ . '/../..' . '/database/migrations/2021_01_11_160930_add_details_to_foods.php',
+        'AddImageToStages' => __DIR__ . '/../..' . '/database/migrations/2021_01_12_153900_add_image_to_stages.php',
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -381,6 +384,7 @@ class ComposerStaticInit2d256b56e99ef5aff32a63af604abaed
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Sound' => __DIR__ . '/../..' . '/app/Sound.php',
         'App\\Staff' => __DIR__ . '/../..' . '/app/Staff.php',
+        'App\\Stage' => __DIR__ . '/../..' . '/app/Stage.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Venue' => __DIR__ . '/../..' . '/app/Venue.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
@@ -408,6 +412,7 @@ class ComposerStaticInit2d256b56e99ef5aff32a63af604abaed
         'CreatePhotosTable' => __DIR__ . '/../..' . '/database/migrations/2021_01_06_145431_create_photos_table.php',
         'CreateSoundsTable' => __DIR__ . '/../..' . '/database/migrations/2021_01_09_160809_create_sounds_table.php',
         'CreateStaffTable' => __DIR__ . '/../..' . '/database/migrations/2020_12_24_101002_create_staff_table.php',
+        'CreateStagesTable' => __DIR__ . '/../..' . '/database/migrations/2021_01_12_145011_create_stages_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000001_create_users_table.php',
         'CreateVenuesTable' => __DIR__ . '/../..' . '/database/migrations/2020_12_28_154411_create_venues_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',

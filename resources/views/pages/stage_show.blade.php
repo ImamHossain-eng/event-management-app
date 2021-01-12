@@ -19,16 +19,16 @@
 	<div class="container" >
 		<div class="row">
 			<div class="col-sm-5">
-				<img id= "img" src="/images/food/{{$food->image}}" alt="food_item_picture">				
+				<img id= "img" src="/images/decoration/{{$stage->image}}" alt="food_item_picture">				
 			</div>
 			<div class="col-sm-7">
-				<h2" style="font-size:3rem;">Name: {{$food->name}} </h2>
-				<h5 style="font-size:2rem;">Price: {{$food->price}} BDT</h5>
-				<p style="font-size:2rem;">Quality: {{$food->category}} </p>				
+				<h2" style="font-size:3rem;">Name: {{$stage->name}} </h2>
+				<h5 style="font-size:2rem;">Price: {{$stage->price}} BDT</h5>
+				<p style="font-size:2rem;">Quality: {{$stage->category}} </p>			
 			</div>
 		</div>
 		<div style="padding:2rem;">
-			{!!$food->details!!}
+			{!!$stage->body!!}
 		</div>
 		
 
