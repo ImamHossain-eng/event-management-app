@@ -11,14 +11,15 @@ use App\Food;
 use App\Photography;
 use App\Stage;
 use App\Sound;
+use App\Package;
 
 class FrontController extends Controller
 {
     public function index(){
         $staffs = Staff::orderBy('created_at', 'asc')->get()->take(4);
-        $venues = Venue::orderBy('created_at', 'asc')->get()->take(3);
+        $packages = Package::orderBy('created_at', 'desc')->get()->take(3);
         $photos = Photo::all();
-        return view('homepage', compact('staffs', 'venues', 'photos'));
+        return view('homepage', compact('staffs', 'packages', 'photos'));
     }
     public function staff_show($id){
         $staff = Staff::find($id);

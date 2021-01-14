@@ -11,6 +11,7 @@ use App\Food;
 use App\Photography;
 use App\Sound;
 use App\Stage;
+use App\Package;
 use Image;
 use File;
 
@@ -491,7 +492,6 @@ class BackController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'price' => 'required',
-            'type' => 'required',
             'category' => 'required'
         ]);
 
@@ -509,7 +509,6 @@ class BackController extends Controller
 
         $stage->name = $request->input('name');
         $stage->price = $request->input('price');
-        $stage->type = $request->input('type');
         $stage->category = $request->input('category');
         $stage->body = $request->input('body');
         $stage->image = $file_name;
@@ -534,7 +533,6 @@ class BackController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'price' => 'required',
-            'type' => 'required',
             'category' => 'required'
         ]);
 
@@ -556,7 +554,6 @@ class BackController extends Controller
 
         $stage->name = $request->input('name');
         $stage->price = $request->input('price');
-        $stage->type = $request->input('type');
         $stage->category = $request->input('category');
         $stage->body = $request->input('body');
         $stage->image = $file_name;
@@ -564,5 +561,73 @@ class BackController extends Controller
         $stage->save();
         return redirect()->route('admin.stages_index');
     }
+    public function package_index(){
+        $packages = Package::all();
+        return view('admin.pages.package_index', compact('packages'));
+    }
+    public function package_create(){
+        $foods = Food::all();
+        $venues = Venue::all();
+        $photos = Photography::all();
+        $stages = Stage::all();
+        return view('admin.pages.package_create', compact('foods', 'venues', 'photos', 'stages'));
+    }
+    //calculate amount and store the package
+    public function package_store(Request $request){
+        $this->validate($request, [
+            'type' => 'required',
+            'food_id' => 'required',
+            'venue_id' => 'required'
+        ]);
+        //receive data to calculate
+        $venue_id = $request->input('venue_id');
+        $food_id = $request->input('food_id');
+        $photo_id = $request->input('photography_id');
+        $stages_id = $request->input('stages_id');
+        $total_people = $request->input('people');
 
+        //Fetch data from database
+        $venue = Venue::find($venue_id);
+        if ($total_people != '') {
+            $people = $total_people;
+        }else{
+          $people = $venue->capacity;
+        }
+        
+        //todo
+        $venue_price = $venue->pricing;
+
+        $food = Food::find($food_id); 
+        $food_p = $food->price;
+        //todo
+        $food_price = $food_p * $people;
+
+        $photography = Photography::find($photo_id);
+        //todo
+        $photography_price = $photography->price;
+
+        $stage = Stage::find($stages_id);
+        //todo
+        $stage_price = $stage->price;
+
+        $price = $venue_price + $food_price + $photography_price + $stage_price;
+
+        $package = new Package;
+
+        $package->type = $request->input('type');
+        $package->food_id = $food_id;
+        $package->venue_id = $venue_id;
+        $package->photography_id = $photo_id;
+        $package->stages_id = $stages_id;
+        $package->people = $people;
+        $package->body = $request->input('body');
+        $package->amount = $price;
+
+        $package->save();
+        return redirect()->route('admin.package_index');
+    }
+    public function package_destroy($id){
+        Package::find($id)->delete();
+        return redirect()->route('admin.package_index');
+    }
 }

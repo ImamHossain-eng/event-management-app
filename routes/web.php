@@ -17,8 +17,17 @@ Route::post('/', 'FrontController@feedback_message');
 
 
 Auth::routes();
+//all user routes
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('home')->group(function () {
+  Route::get('/', 'HomeController@index')->name('home');
+  Route::get('/order', 'OrderController@order_index')->name('user.order_index');
+  Route::get('/order/create', 'OrderController@order_create')->name('user.order_create');
+  Route::post('/order', 'OrderController@order_store')->name('user.order_store');
+
+});
+
+
 
 
 //Admin Route
@@ -85,6 +94,12 @@ Route::prefix('admin')->group(function () {
   Route::delete('/stages/{id}', 'BackController@stages_destroy')->name('admin.stages_destroy');
   Route::get('/stages/{id}/edit', 'BackController@stages_edit')->name('admin.stages_edit');
   Route::put('/stages/{id}', 'BackController@stages_update')->name('admin.stages_update');
+
+  //Package Create
+  Route::get('/packages', 'BackController@package_index')->name('admin.package_index');
+  Route::get('/packages/create', 'BackController@package_create')->name('admin.package_create');
+  Route::post('/packages', 'BackController@package_store')->name('admin.package_store');
+  Route::delete('/packages/{id}', 'BackController@package_destroy')->name('admin.package_destroy');
 
 
   //Photo Crud

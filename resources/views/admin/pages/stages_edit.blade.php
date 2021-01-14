@@ -21,13 +21,6 @@
 		<option value="rich">Rich</option>
 	</select>
 </div><br>
-<div class="from-group">
-	<select name="type">
-		<option value="stage">Stage</option>
-		<option value="chair">Chair</option>
-		<option value="table">Table</option>
-	</select>
-</div><br>
 <div class="form-group">
 	<label for="">Upload Profile Picture</label>
 	<input type="file" name="image">

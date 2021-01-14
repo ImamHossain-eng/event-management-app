@@ -20,7 +20,7 @@
 <div class="form-group">
 	<label for="">Category</label>
 <div class="from-group">
-	<select name="category">
+	<select name="venues_tag">
 		<option value="poor">Poor</option>
 		<option value="middle">Middle Class</option>
 		<option value="rich">Rich</option>

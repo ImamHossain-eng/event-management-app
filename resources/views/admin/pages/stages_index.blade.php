@@ -8,7 +8,6 @@
 		<tr>
 			<th>Name of Service</th>
 			<th>Price</th>
-			<th>Components</th>
 			<th>Quality</th>
 			<th>Created</th>
 		</tr>
@@ -18,7 +17,6 @@
         <tr>
             <td> {{$stage->name}} </td>
             <td> {{$stage->price}} </td>
-            <td> {{$stage->type}}</td>
             <td> {{$stage->category}} </td>
             <td> {{ date('F d, Y', strtotime($stage->created_at))}}
 		at {{ date('g:ia', strtotime($stage->created_at))}}
