@@ -562,7 +562,7 @@ class BackController extends Controller
         return redirect()->route('admin.stages_index');
     }
     public function package_index(){
-        $packages = Package::all();
+        $packages = Package::orderBy('created_at', 'desc')->where('creator', 'admin')->get();
         return view('admin.pages.package_index', compact('packages'));
     }
     public function package_create(){
@@ -620,9 +620,10 @@ class BackController extends Controller
         $package->photography_id = $photo_id;
         $package->stages_id = $stages_id;
         $package->people = $people;
+        $package->creator = 'admin';
         $package->body = $request->input('body');
         $package->amount = $price;
-
+        
         $package->save();
         return redirect()->route('admin.package_index');
     }

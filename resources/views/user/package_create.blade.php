@@ -1,4 +1,4 @@
-@extends('admin.layouts.home')
+@extends('layouts.user')
 @section('content')
 <head>
 	<style type="text/css">
@@ -7,11 +7,11 @@
 </head>
 <body>
 	<div class="card-header m-b-15">
-		<h4>Add New Package</h4>
+		<h4>Add New Customized Package</h4>
 	</div>
 	<br>
 
-	{{Form::open(['route' => 'admin.package_store', 'method' => 'POST', 'enctype' => 'multipart/form-data'])}}
+	{{Form::open(['route' => 'user.package_store', 'method' => 'POST', 'enctype' => 'multipart/form-data'])}}
 	<div class="form-group">
 		<label>Package Type:</label>
 		<div class="from-group">

@@ -29,6 +29,8 @@
   onclick="w3_close()">Close &times;</button>
   
   <a href="/home/order" class="w3-bar-item w3-button">Order</a>
+  <a href="/home/packages" class="w3-bar-item w3-button">Available Packages</a>
+  <a href="/home/packages/create" class="w3-bar-item w3-button">Customize Package</a>
   <a href="#" class="w3-bar-item w3-button">Link 3</a>
   <div>
         <a class="w3-bar-item w3-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

@@ -24,6 +24,11 @@ Route::prefix('home')->group(function () {
   Route::get('/order', 'OrderController@order_index')->name('user.order_index');
   Route::get('/order/create', 'OrderController@order_create')->name('user.order_create');
   Route::post('/order', 'OrderController@order_store')->name('user.order_store');
+  Route::get('/packages', 'OrderController@package_all')->name('user.package_all');
+  Route::get('/packages/create', 'OrderController@package_create')->name('user.package_create');
+  Route::post('/packages', 'OrderController@package_store')->name('user.package_store');
+  Route::get('/packages_index', 'OrderController@package_index')->name('user.package_index');
+  Route::get('/payment/{id}', 'OrderController@payment_create')->name('user.payment_create');
 
 });
 
@@ -131,6 +136,11 @@ Route::get('/sounds/{id}', 'FrontController@sound_show');
 //Decoration services
 Route::get('/decoration', 'FrontController@decoration');
 Route::get('/decoration/{id}', 'FrontController@decoration_show');
+//view all package
+Route::get('/packages', 'FrontController@packages_all');
+Route::get('/package/{id}', 'FrontController@package_show');
+//Contact View
+Route::get('/contact', 'FrontController@contact');
 
 
 

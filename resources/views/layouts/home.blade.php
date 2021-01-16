@@ -24,7 +24,9 @@
 <body>
     <div id="myPage">
         @include('parts.navbar')
+        <br>
         @yield('content')
+        <br>
         @include('parts.footer')
     </div>
 </body>

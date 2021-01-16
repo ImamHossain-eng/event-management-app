@@ -12,10 +12,7 @@
   <div class="w3-container">
   <h3>Customer 1</h3>
   <h4>Trade</h4>
-  <p>Blablabla</p>
-  <p>Blablabla</p>
-  <p>Blablabla</p>
-  <p>Blablabla</p>
+  
   </div>
   </div>
 </div>
@@ -26,10 +23,7 @@
   <div class="w3-container">
   <h3>Customer 2</h3>
   <h4>Trade</h4>
-  <p>Blablabla</p>
-  <p>Blablabla</p>
-  <p>Blablabla</p>
-  <p>Blablabla</p>
+ 
   </div>
   </div>
 </div>
@@ -40,10 +34,6 @@
   <div class="w3-container">
   <h3>Customer 3</h3>
   <h4>Trade</h4>
-  <p>Blablabla</p>
-  <p>Blablabla</p>
-  <p>Blablabla</p>
-  <p>Blablabla</p>
   </div>
   </div>
 </div>

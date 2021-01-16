@@ -81,4 +81,24 @@ class FrontController extends Controller
         $stage = Stage::find($id);
         return view('pages.stage_show', compact('stage'));
     }
+    public function packages_all(){
+        $packages = Package::orderBy('created_at', 'desc')->where('creator', 'admin')->simplePaginate(4);
+        return view('pages.packages_all', compact('packages'));
+    }
+    public function package_show($id){
+        $package = Package::find($id);
+        //fetch all table info
+        $venue_id = $package->venue_id;
+        $venue = Venue::find($venue_id);
+        $food_id = $package->food_id;
+        $food = Food::find($food_id);
+        $photography_id = $package->photography_id;
+        $photography = Photography::find($photography_id);
+        $stage_id = $package->stages_id;
+        $stage = Stage::find($stage_id);
+        return view('pages.package_show', compact('package', 'venue', 'food', 'photography', 'stage'));
+    }
+    public function contact(){
+        return view('pages.contact');
+    }
 }

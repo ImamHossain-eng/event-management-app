@@ -38,7 +38,7 @@
                 <img id="img" class="card-img-top" src="/images/food/{{$food->image}}" alt="Card image cap">
                 <div class="card-body">
                   <p class="card-text">{{$food->name}}</p>
-                  <p class="card-text"> {{$food->price}} <small>Per Head</small> </p>
+                  <p class="card-text">BDT: {{$food->price}} /= <small>Per Head</small> </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                     <a href="/food_item/{{$food->id}}">
