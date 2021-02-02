@@ -10,14 +10,14 @@
 
 <div class="form-group">
 	<label for="">Upload Profile Picture</label>
-	<input type="file" name="image">
-</div>
+	<input type="file" name="image" class="form-control">
+</div><br>
 <div class="form-group">
 	<label>Category</label>
-	<select name="type">
+	<select name="type" class="btn btn-primary">
 		<option value="slider"> Slider </option>
 	</select>
-</div>
+</div><br>
 <input type="submit" name="Submit" value="Save" class="btn btn-primary"><br>
 {{Form::close()}}
 

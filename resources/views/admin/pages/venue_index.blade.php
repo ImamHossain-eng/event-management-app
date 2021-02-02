@@ -8,8 +8,9 @@
 		<tr>
 			<th>Name</th>
             <th>Capacity</th>
-            <th>Category</th>
-            <th>Pricing</th>            
+            <th>Price</th>
+            <th>Created_at</th>
+            <th>Option</th>            
 		</tr>
     </thead>
     <tbody>
@@ -17,8 +18,9 @@
         <tr>
             <td> {{$venue->name}} </td>
             <td> {{$venue->capacity}} </td>
-            <td> {{$venue->venue_tag}} </td>
-            <td> {{$venue->pricing}} 
+            <td> {{number_format($venue->price, 2)}} </td>
+            <td> {{$venue->created_at->diffForHumans()}} </td>
+            <td>
 
                 <a href="venues/{{$venue->id}}/edit" class="btn btn-primary">
 					<i class="fa fa-pen"></i>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Admin;
+use Auth;
 
 class ViewController extends Controller
 {
@@ -15,7 +16,12 @@ class ViewController extends Controller
     
     public function create()
     {
-        return view('admin.auth.register');
+        
+        if(Auth::user()->id===7){
+            return view('admin.auth.register');
+        }else{
+            return redirect()->route('admin.dashboard')->with('error', 'You are not super admin');
+        }
     }
     //store new admin details
     public function store(Request $request)
@@ -28,17 +34,18 @@ class ViewController extends Controller
           'password'      => 'required'
 
         ]);
-
-        // store in the database
-        $admins = new Admin;
-        $admins->name = $request->name;
-        $admins->email = $request->email;
-        $admins->password=bcrypt($request->password);
-
-        $admins->save();
-
-
-        return redirect()->route('admin.dashboard');
+        //validate super admin
+        if(Auth::user()->id===7){
+            // store in the database
+            $admins = new Admin;
+            $admins->name = $request->name;
+            $admins->email = $request->email;
+            $admins->password=bcrypt($request->password);
+            $admins->save();
+            return redirect()->route('admin.list')->with('success', 'New admin created');
+        }else{
+            return redirect()->route('admin.dashboard')->with('error', 'You are not super admin');
+        }       
 
     }
     //show all available admins
@@ -47,8 +54,13 @@ class ViewController extends Controller
         return view('admin.pages.admin_list', compact('admins'));
     }
     public function admin_destroy($id){
-        $admin = Admin::find($id);
-        $admin->delete();
-        return redirect()->route('admin.list');
+        if(Auth::user()->id===7){
+            $admin = Admin::find($id);
+            $admin->delete();
+            return redirect()->route('admin.list')->with('error', 'One Admin Removed');
+        }else{
+            return redirect()->route('admin.list')->with('error', 'You are not super admin');
+        }
+        
     }
 }

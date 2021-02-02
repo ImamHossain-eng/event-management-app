@@ -23,8 +23,7 @@
 			</div>
 			<div class="col-sm-7">
 				<h2" style="font-size:3rem;"> <small>Service:</small> {{$photo->name}} </h2>
-				<h5 style="font-size:2rem;">Price: {{$photo->price}} BDT</h5>
-				<p style="font-size:2rem;">Class: {{$photo->category}} </p>				
+				<h5 style="font-size:2rem;">Price: {{$photo->price}} BDT</h5>				
 			</div>
 		</div>
 	</div>

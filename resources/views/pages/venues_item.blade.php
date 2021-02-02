@@ -27,8 +27,8 @@
 				        </strong>
 				    </h6>
 				    <br>
-				    <p><i class="fa fa-dollar">  </i>
-							{{$value->pricing}}
+				    <p>BDT: 
+							{{number_format($value->price, 2)}}
 					</p>
 					<p><i class="fa fa-building">  </i>
 							{{$value->capacity}}
@@ -36,9 +36,10 @@
 			
 				<p>
 					<a href="/venues/{{$value->id}}" class="btn btn-primary">Read More <i class="fa fa-arrow-circle-right"> </i></a>
+					<!--
 					<a href="#" class="btn btn-success">
 						<i class="fa fa-shopping-cart"></i>
-					</a>
+					</a>-->
 				</p><br>
 			</div>
 			</div>

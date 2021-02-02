@@ -12,6 +12,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        '/pay-via-ajax', '/success','/cancel','/fail','/ipn'
     ];
 }

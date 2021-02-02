@@ -12,22 +12,14 @@
 	<br>
 
 	{{Form::open(['route' => 'admin.package_store', 'method' => 'POST', 'enctype' => 'multipart/form-data'])}}
+	
 	<div class="form-group">
-		<label>Package Type:</label>
-		<div class="from-group">
-			<select name="type">
-				<option value="poor">Poor</option>
-				<option value="middle">Middle Class</option>
-				<option value="rich">Rich</option>
-			</select>
-		</div>
-	</div><br>
-	<div class="form-group">
-		<input type="number" name="people" placeholder="Enter the number of People">
+		<input type="number" name="people" placeholder="Enter the number of People" class="form-control">
 	</div><br>
 	<div class="from-group">
 		<label>Available Food + Price:</label>
-		<select name="food_id">
+		<select name="food_id" class="btn btn-secondary form-control">
+			<option value="0">Choose...</option>
 				@foreach($foods as $food)					
 						<option value="{{$food->id}}"> {{$food->name}}  + 
 							<small>{{$food->price}}</small> 
@@ -37,18 +29,20 @@
 	</div><br>
 	<div class="from-group">
 		<label>Available Venues + Capacity + Price:</label>
-		<select name="venue_id">
+		<select name="venue_id" class="btn btn-secondary form-control">
+			<option value="0">Choose...</option>
 				@foreach($venues as $venue)					
 						<option value="{{$venue->id}}"> {{$venue->name}}  + 
 							{{ $venue->capacity }} +
-							<small>{{$venue->pricing}}</small> 						
+							<small>{{$venue->price}}</small> 						
 						</option>
 				@endforeach				
 		</select>	
 	</div><br>
 	<div class="from-group">
 		<label>Photography Services + Price:</label>
-		<select name="photography_id">
+		<select name="photography_id" class="btn btn-secondary form-control">
+			<option value="0">Choose...</option>
 				@foreach($photos as $photo)					
 						<option value="{{$photo->id}}"> {{$photo->name}}  + 
 							<small>{{$photo->price}}</small> 
@@ -57,8 +51,20 @@
 		</select>	
 	</div><br>
 	<div class="from-group">
+		<label>Sound System & Lighting + Price:</label>
+		<select name="sound_id" class="btn btn-secondary form-control">
+			<option value="0">Choose...</option>
+				@foreach($sounds as $sound)					
+						<option value="{{$sound->id}}"> {{$sound->name}}  + 
+							<small>{{$sound->price}}</small> 
+						</option>
+				@endforeach
+		</select>	
+	</div><br>
+	<div class="from-group">
 		<label>Decoration Services + Price:</label>
-		<select name="stages_id">
+		<select name="stages_id" class="btn btn-secondary form-control">
+			<option value="0">Choose...</option>
 				@foreach($stages as $stage)					
 						<option value="{{$stage->id}}"> {{$stage->name}}  + 
 							<small>{{$stage->price}}</small> 

@@ -6,20 +6,22 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
+			<th>ID</th>
 			<th>Name of Service</th>
 			<th>Price</th>
-			<th>Quality</th>
 			<th>Created</th>
+			<th>Option</th>
 		</tr>
     </thead>
     <tbody>
         @foreach($stages as $stage)
         <tr>
+        	<td> {{$stage->id}} </td>
             <td> {{$stage->name}} </td>
             <td> {{$stage->price}} </td>
-            <td> {{$stage->category}} </td>
             <td> {{ date('F d, Y', strtotime($stage->created_at))}}
-		at {{ date('g:ia', strtotime($stage->created_at))}}
+		at {{ date('g:ia', strtotime($stage->created_at))}} </td>
+            <td> 
 
             	<a href="stages/{{$stage->id}}/edit" class="btn btn-primary">
 					<i class="fa fa-pen"></i>

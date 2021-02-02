@@ -23,8 +23,7 @@
 			</div>
 			<div class="col-sm-7">
 				<h2" style="font-size:3rem;">Name: {{$food->name}} </h2>
-				<h5 style="font-size:2rem;">Price: {{$food->price}} BDT</h5>
-				<p style="font-size:2rem;">Quality: {{$food->category}} </p>				
+				<h5 style="font-size:2rem;">Price: {{$food->price}} BDT</h5>				
 			</div>
 		</div>
 		<div style="padding:2rem;">

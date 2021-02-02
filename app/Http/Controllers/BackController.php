@@ -12,6 +12,7 @@ use App\Photography;
 use App\Sound;
 use App\Stage;
 use App\Package;
+use App\Order;
 use Image;
 use File;
 
@@ -54,7 +55,7 @@ class BackController extends Controller
         $staff->image = $file_name;
 
         $staff->save();
-        return redirect()->route('admin.staffs')->with('Successfully Inserted');
+        return redirect()->route('admin.staffs')->with('success', 'Successfully Inserted');
 
     }
     public function staff_destroy($id){
@@ -64,7 +65,7 @@ class BackController extends Controller
             File::delete( public_path('/images/staffs/'.$oldImg));
         }
         $staff->delete();
-        return redirect()->route('admin.staffs');
+        return redirect()->route('admin.staffs')->with('error', 'Successfully Deleted');
     }
     public function staff_edit($id){
         $staff = Staff::find($id);
@@ -100,7 +101,7 @@ class BackController extends Controller
         $staff->image = $file_name;
 
         $staff->save();
-        return redirect()->route('admin.staffs')->with('Successfully Updated');
+        return redirect()->route('admin.staffs')->with('warning', 'Successfully Updated');
     }
     //show all feedbacks
     public function feedback_index(){
@@ -110,8 +111,7 @@ class BackController extends Controller
     //destroy feedback
     public function feedback_destroy($id){
         Feedback::find($id)->delete();
-        return redirect()->route('admin.feedback_index');
-
+        return redirect()->route('admin.feedback_index')->with('error', 'Deleted one feedback');
     }
 
     //Venue Crud start from here
@@ -126,8 +126,8 @@ class BackController extends Controller
         //validation
         $this->validate($request, [
             'name' => 'required',
-            'pricing' => 'required',
-            'capacity' => 'required',
+            'price' => 'required',
+            'capacity' => 'required'
         ]);
         //save the image
         if($request->hasFile('image')){
@@ -144,20 +144,19 @@ class BackController extends Controller
 
         $venue->name = $request->input('name');
         $venue->capacity = $request->input('capacity');
-        $venue->pricing = $request->input('pricing');
-        $venue->venue_tag = $request->input('venue_tag');
+        $venue->price = $request->input('price');
         $venue->body = $request->input('body');
         $venue->image = $file_name;
 
         $venue->save();
 
-        return redirect()->route('admin.venue');
+        return redirect()->route('admin.venue')->with('success', 'Successfully Inserted a Venue');
 
     }
     public function venue_destroy($id){
         $venue = Venue::find($id);
         $venue->delete();
-        return redirect()->route('admin.venue');
+        return redirect()->route('admin.venue')->with('error', 'Successfully Removed a Venue');
     }
     public function venue_edit($id){
         $venue = Venue::find($id);
@@ -167,8 +166,8 @@ class BackController extends Controller
         //validation
         $this->validate($request, [
             'name' => 'required',
-            'pricing' => 'required',
-            'capacity' => 'required',
+            'price' => 'required',
+            'capacity' => 'required'
         ]);
 
         $venue = Venue::find($id);
@@ -190,14 +189,13 @@ class BackController extends Controller
 
         $venue->name = $request->input('name');
         $venue->capacity = $request->input('capacity');
-        $venue->pricing = $request->input('pricing');
-        $venue->venue_tag = $request->input('venue_tag');
+        $venue->price = $request->input('price');
         $venue->body = $request->input('body');
         $venue->image = $file_name;
 
         $venue->save();
 
-        return redirect()->route('admin.venue');
+        return redirect()->route('admin.venue')->with('warning', 'Successfully Updated');
     }
     //Photo Crud
     public function photo_index(){
@@ -244,8 +242,7 @@ class BackController extends Controller
     public function food_store(Request $request){
         $this->validate($request, [
             'name' => 'required',
-            'price' => 'required',
-            'category' => 'required'
+            'price' => 'required'
         ]);
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -261,12 +258,11 @@ class BackController extends Controller
 
         $food->name = $request->input('name');
         $food->price = $request->input('price');
-        $food->category = $request->input('category');
         $food->details = $request->input('details');
         $food->image = $file_name;
 
         $food->save();
-        return redirect()->route('admin.food_index');
+        return redirect()->route('admin.food_index')->with('success', 'Successfully Created a Food Package');
     }
     public function food_destroy($id){
         $food = Food::find($id);
@@ -276,7 +272,7 @@ class BackController extends Controller
             File::delete(public_path('/images/food/'.$old));
         }
         $food->delete();
-        return redirect()->route('admin.food_index');
+        return redirect()->route('admin.food_index')->with('error', 'Deleted a Food Package');
     }
     public function food_edit($id){
         $food = Food::find($id);
@@ -289,8 +285,7 @@ class BackController extends Controller
         //validation
         $this->validate($request, [
             'name' => 'required',
-            'price' => 'required',
-            'category' => 'required'
+            'price' => 'required'
         ]);
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -308,12 +303,11 @@ class BackController extends Controller
 
         $food->name = $request->input('name');
         $food->price = $request->input('price');
-        $food->category = $request->input('category');
         $food->details = $request->input('details');
         $food->image = $file_name;
 
         $food->save();
-        return redirect()->route('admin.food_index');
+        return redirect()->route('admin.food_index')->with('warning', 'Updated a Food Package');
     }
     //photography crud
     public function photos_index(){
@@ -326,8 +320,7 @@ class BackController extends Controller
     public function photos_store(Request $request){
         $this->validate($request, [
             'name' => 'required',
-            'price' => 'required',
-            'category' => 'required'
+            'price' => 'required'
         ]);
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -343,12 +336,11 @@ class BackController extends Controller
 
         $food->name = $request->input('name');
         $food->price = $request->input('price');
-        $food->category = $request->input('category');
         $food->body = $request->input('body'); 
         $food->image = $file_name;
 
         $food->save();
-        return redirect()->route('admin.photos_index');
+        return redirect()->route('admin.photos_index')->with('success', 'Successfully Created a Photography Service');
     }
     public function photos_destroy($id){
         $photo = Photography::find($id);
@@ -358,7 +350,7 @@ class BackController extends Controller
             File::delete(public_path('/images/photography/'.$old));
         }
         $photo->delete();
-        return redirect()->route('admin.photos_index');
+        return redirect()->route('admin.photos_index')->with('error', 'Deleted a Photography Service');
     }
     public function photos_edit($id){
         $photo = Photography::find($id);
@@ -368,7 +360,6 @@ class BackController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'price' => 'required',
-            'category' => 'required'
         ]);
 
         $photo = Photography::find($id);
@@ -390,12 +381,11 @@ class BackController extends Controller
 
         $photo->name = $request->input('name');
         $photo->price = $request->input('price');
-        $photo->category = $request->input('category');
         $photo->body = $request->input('body'); 
         $photo->image = $file_name;
 
         $photo->save();
-        return redirect()->route('admin.photos_index');
+        return redirect()->route('admin.photos_index')->with('warning', 'Updated a Photography Service');
     }
     public function sounds_index(){
         $sounds = Sound::all();
@@ -407,8 +397,7 @@ class BackController extends Controller
     public function sounds_store(Request $request){
         $this->validate($request, [
             'name' => 'required',
-            'price' => 'required',
-            'category' => 'required'
+            'price' => 'required'
         ]);
 
         if ($request->hasFile('image')) {
@@ -425,12 +414,11 @@ class BackController extends Controller
 
         $sound->name = $request->input('name');
         $sound->price = $request->input('price');
-        $sound->category = $request->input('category');
         $sound->body2 = $request->input('body2');
         $sound->image = $file_name;
 
         $sound->save();
-        return redirect()->route('admin.sounds_index');
+        return redirect()->route('admin.sounds_index')->with('success', 'Successfully Created a Service');
     }
     public function sounds_destroy($id){
         $sound = Sound::find($id);
@@ -440,7 +428,7 @@ class BackController extends Controller
             File::delete(public_path('images/sound/'.$oldImg));
         }
         $sound->delete();
-        return redirect()->route('admin.sounds_index');
+        return redirect()->route('admin.sounds_index')->with('error', 'Successfully Deleted a Service');
     }
     public function sounds_edit($id){
         $sound = Sound::find($id);
@@ -449,8 +437,7 @@ class BackController extends Controller
     public function sounds_update(Request $request, $id){
         $this->validate($request, [
             'name' => 'required',
-            'price' => 'required',
-            'category' => 'required'
+            'price' => 'required'
         ]);
 
         $sound = Sound::find($id);
@@ -472,12 +459,11 @@ class BackController extends Controller
 
         $sound->name = $request->input('name');
         $sound->price = $request->input('price');
-        $sound->category = $request->input('category');
         $sound->body2 = $request->input('body2');
         $sound->image = $file_name;
 
         $sound->save();
-        return redirect()->route('admin.sounds_index');
+        return redirect()->route('admin.sounds_index')->with('warning', 'Successfully Updated a Service');
 
     }
     //decoration crud
@@ -491,8 +477,7 @@ class BackController extends Controller
     public function stages_store(Request $request){
         $this->validate($request, [
             'name' => 'required',
-            'price' => 'required',
-            'category' => 'required'
+            'price' => 'required'
         ]);
 
         if ($request->hasFile('image')) {
@@ -509,12 +494,11 @@ class BackController extends Controller
 
         $stage->name = $request->input('name');
         $stage->price = $request->input('price');
-        $stage->category = $request->input('category');
         $stage->body = $request->input('body');
         $stage->image = $file_name;
 
         $stage->save();
-        return redirect()->route('admin.stages_index');
+        return redirect()->route('admin.stages_index')->with('success', 'Successfully Created a Decoration Service');
     }
     public function stages_destroy($id){
         $stage = Stage::find($id);
@@ -523,7 +507,7 @@ class BackController extends Controller
             File::delete(public_path('images/decoration/'.$oldImg));
         }
         $stage->delete();
-        return redirect()->route('admin.stages_index');
+        return redirect()->route('admin.stages_index')->with('error', 'Deleted a Decoration Service');
     }
     public function stages_edit($id){
         $stage = Stage::find($id);
@@ -532,8 +516,7 @@ class BackController extends Controller
     public function stages_update(Request $request, $id){
         $this->validate($request, [
             'name' => 'required',
-            'price' => 'required',
-            'category' => 'required'
+            'price' => 'required'
         ]);
 
         $stage = Stage::find($id);
@@ -554,81 +537,111 @@ class BackController extends Controller
 
         $stage->name = $request->input('name');
         $stage->price = $request->input('price');
-        $stage->category = $request->input('category');
         $stage->body = $request->input('body');
         $stage->image = $file_name;
 
         $stage->save();
-        return redirect()->route('admin.stages_index');
+        return redirect()->route('admin.stages_index')->with('warning', 'Updated a Decoration Service');
     }
     public function package_index(){
-        $packages = Package::orderBy('created_at', 'desc')->where('creator', 'admin')->get();
+        $packages = Package::orderBy('created_at', 'desc')->get();
         return view('admin.pages.package_index', compact('packages'));
     }
     public function package_create(){
         $foods = Food::all();
         $venues = Venue::all();
         $photos = Photography::all();
+        $sounds = Sound::all();
         $stages = Stage::all();
-        return view('admin.pages.package_create', compact('foods', 'venues', 'photos', 'stages'));
+        return view('admin.pages.package_create', compact('foods', 'venues', 'photos', 'stages', 'sounds'));
     }
     //calculate amount and store the package
     public function package_store(Request $request){
         $this->validate($request, [
-            'type' => 'required',
-            'food_id' => 'required',
-            'venue_id' => 'required'
+            'people' => 'required'
         ]);
         //receive data to calculate
         $venue_id = $request->input('venue_id');
         $food_id = $request->input('food_id');
         $photo_id = $request->input('photography_id');
+        $sound_id = $request->input('sound_id');
         $stages_id = $request->input('stages_id');
         $total_people = $request->input('people');
 
-        //Fetch data from database
-        $venue = Venue::find($venue_id);
-        if ($total_people != '') {
+       //Persons Validation
+        if ($total_people > 25) {
             $people = $total_people;
         }else{
-          $people = $venue->capacity;
+          return redirect()->route('admin.package_create')->with('error', 'Minimum 25 Persons Required');
+        }
+
+         //Fetch data from database
+        if($venue_id != 0){
+            $venue = Venue::find($venue_id);
+            $venue_price = $venue->pricing;
+        }else{
+            $venue_price = 0;
         }
         
-        //todo
-        $venue_price = $venue->pricing;
-
-        $food = Food::find($food_id); 
-        $food_p = $food->price;
-        //todo
-        $food_price = $food_p * $people;
-
-        $photography = Photography::find($photo_id);
-        //todo
-        $photography_price = $photography->price;
-
-        $stage = Stage::find($stages_id);
-        //todo
-        $stage_price = $stage->price;
-
-        $price = $venue_price + $food_price + $photography_price + $stage_price;
-
-        $package = new Package;
-
-        $package->type = $request->input('type');
-        $package->food_id = $food_id;
-        $package->venue_id = $venue_id;
-        $package->photography_id = $photo_id;
-        $package->stages_id = $stages_id;
-        $package->people = $people;
-        $package->creator = 'admin';
-        $package->body = $request->input('body');
-        $package->amount = $price;
+        if($food_id != 0){
+            $food = Food::find($food_id); 
+            $food_p = $food->price;
+            $food_price = $food_p * $people;
+        }else{
+            $food_price = 0;
+        }
         
-        $package->save();
-        return redirect()->route('admin.package_index');
+        if($photo_id){
+            $photography = Photography::find($photo_id);
+            $photography_price = $photography->price;
+        }else{
+            $photography_price = 0;
+        }
+
+        if($sound_id != 0){
+            $sound = Sound::find($sound_id);
+            $sound_price = $sound->price;
+        }else{
+            $sound_price = 0;
+        }
+
+        if($stages_id != 0){
+            $stage = Stage::find($stages_id);
+            //todo
+            $stage_price = $stage->price;
+        }else{
+            $stage_price = 0;
+        }
+
+        //calculate the total price
+        $price = $venue_price + $food_price + $photography_price + $sound_price + $stage_price;
+
+        if($price != 0){
+            $package = new Package;
+
+            $package->food_id = $food_id;
+            $package->venue_id = $venue_id;
+            $package->photography_id = $photo_id;
+            $package->sound_id = $sound_id;
+            $package->stages_id = $stages_id;
+            $package->people = $people;
+            $package->creator = 'admin';
+            $package->body = $request->input('body');
+            $package->type = '';
+            $package->amount = $price;
+        
+            $package->save();
+            return redirect()->route('admin.package_index')->with('success', 'Created New Package');
+        }else{
+            return redirect()->route('admin.package_create')->with('error', 'Please Select any Service for this Package');
+        }
     }
     public function package_destroy($id){
         Package::find($id)->delete();
-        return redirect()->route('admin.package_index');
+        return redirect()->route('admin.package_index')->with('error', 'Deleted a package');
+    }
+    public function payment_info(){
+        $orders = Order::orderBy('id', 'desc')->simplePaginate(10);
+        return view('admin.pages.payment_info', compact('orders'));
     }
 }

@@ -37,9 +37,10 @@
 			
 				<p>
 					<a href="/decoration/{{$value->id}}" class="btn btn-primary">Read More <i class="fa fa-arrow-circle-right"> </i></a>
+					<!--
 					<a href="#" class="btn btn-success">
 						<i class="fa fa-shopping-cart"></i>
-					</a>
+					</a>-->
 				</p><br>
 			</div>
 			</div>

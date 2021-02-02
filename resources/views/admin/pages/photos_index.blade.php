@@ -6,19 +6,21 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
+			<th>ID</th>
 			<th>Name</th>
 			<th>Price</th>
-			<th>Category</th>
-			<th>Created</th>
+			<th>Created_at</th>
+			<th>Option</th>
 		</tr>
     </thead>
     <tbody>
     	@foreach($photos as $photo)
     		<tr>
+    			<td> {{$photo->id}} </td>
     			<td> {{$photo->name}} </td>
     			<td> {{$photo->price}} </td>
-    			<td> {{$photo->category}} </td>
-    			<td> {{$photo->created_at->diffForHumans()}}
+    			<td> {{$photo->created_at->diffForHumans()}} </td>
+    			<td> 
 
 
     				<a href="photos/{{$photo->id}}/edit" class="btn btn-primary">
@@ -31,10 +33,7 @@
 				<button type="submit" style="display:inline;" class="btn btn-danger">
 					<i class="fa fa-trash"></i>
 				</button>
-				{{Form::close()}} 
-
-
-    				
+				{{Form::close()}}     				
 
 
 

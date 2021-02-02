@@ -5,7 +5,7 @@
       <h3>Address</h3>
       <p><i class="fa fa-map-marker w3-text-teal w3-xlarge"></i>  Gazaria, Munshigonj-1510</p>
       <p><i class="fa fa-phone w3-text-teal w3-xlarge"></i>  +00 1757438542</p>
-      <p><i class="fa fa-envelope-o w3-text-teal w3-xlarge"></i>  test@test.com</p>
+      <p><i class="fa fa-envelope-o w3-text-teal w3-xlarge"></i>  roman.cse007@gmail.com</p>
     </div>
     <div class="w3-col m7">
 

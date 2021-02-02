@@ -12,12 +12,13 @@ use App\Photography;
 use App\Stage;
 use App\Sound;
 use App\Package;
+use Carbon\Carbon;
 
 class FrontController extends Controller
 {
     public function index(){
         $staffs = Staff::orderBy('created_at', 'asc')->get()->take(4);
-        $packages = Package::orderBy('created_at', 'desc')->get()->take(3);
+        $packages = Package::orderBy('created_at', 'desc')->where('creator', 'admin')->get()->take(3);
         $photos = Photo::all();
         return view('homepage', compact('staffs', 'packages', 'photos'));
     }
@@ -41,7 +42,7 @@ class FrontController extends Controller
     return redirect()->route('index');
     }
     public function food_item(){
-        $foods = Food::orderBy('created_at', 'desc')->simplePaginate(3);
+        $foods = Food::orderBy('created_at', 'asc')->simplePaginate(3);
         return view('pages.food_item', compact('foods'));
     }
     public function food_show($id){
@@ -89,16 +90,215 @@ class FrontController extends Controller
         $package = Package::find($id);
         //fetch all table info
         $venue_id = $package->venue_id;
-        $venue = Venue::find($venue_id);
+        if($venue_id != 0){
+            $venue = Venue::find($venue_id);
+        }else{
+            $venue = '';
+        }
+        
         $food_id = $package->food_id;
-        $food = Food::find($food_id);
+
+        if($food_id != 0){
+            $food = Food::find($food_id);
+        }else{
+            $food = '';
+        }
+        
         $photography_id = $package->photography_id;
-        $photography = Photography::find($photography_id);
+        if($photography_id != 0){
+            $photography = Photography::find($photography_id);
+        }else{
+            $photography = '';
+        }
+       
+        $sound_id = $package->sound_id;
+        if($sound_id != 0){
+            $sound = Sound::find($sound_id);
+        }else{
+            $sound = '';
+        }
+        
         $stage_id = $package->stages_id;
-        $stage = Stage::find($stage_id);
-        return view('pages.package_show', compact('package', 'venue', 'food', 'photography', 'stage'));
+        if($stage_id != 0){
+            $stage = Stage::find($stage_id);
+        }else{
+            $stage = '';
+        }
+        
+        return view('pages.package_show', compact('package', 'venue', 'food', 'photography', 'sound', 'stage'));
     }
     public function contact(){
         return view('pages.contact');
     }
+    public function Package_create(){
+        $foods = Food::all();
+        $venues = Venue::all();
+        $photos = Photography::all();
+        $stages = Stage::all();
+        $sounds = Sound::all();
+        return view('visitor.package_create', compact('foods', 'venues', 'photos', 'stages', 'sounds'));
+    }
+    public function package_store(Request $request){
+         $this->validate($request, [
+            'food_id' => 'required',
+            'venue_id' => 'required',
+            'sound_id' => 'required',
+            'type' => 'required',
+            'people' => 'required'
+        ]);
+        //receive data to calculate
+        $venue_id = $request->input('venue_id');
+        $food_id = $request->input('food_id');
+        $photo_id = $request->input('photography_id');
+        $sound_id = $request->input('sound_id');
+        $stages_id = $request->input('stages_id');
+        $total_people = $request->input('people');
+        $user_date = $request->input('type');
+
+        //Date validation
+        $packs = Package::all();
+        foreach($packs as $pack){
+            if($pack->type != $user_date){
+                $date_today = Carbon::now();
+                if($user_date > $date_today){
+                    $date = $user_date;
+                }else{
+                    return redirect()->route('visitor.package_create')->with('error', 'ERROR: You choose an old date');
+                }
+            }else{
+                if($pack->venue_id != $venue_id){
+                    $date_today = Carbon::now();
+                    if($user_date > $date_today){
+                        $date = $user_date;
+                    }else{
+                        return redirect()->route('visitor.package_create')->with('error', 'ERROR: You choose an old date');
+                    }
+                }else{
+                    return redirect()->route('visitor.package_create')->with('error', 'ERROR: This Venue has taken on this date');
+                }
+            }
+        }
+
+        //Person validation
+        if ($total_people >= 25) {
+            $people = $total_people;
+        }else{
+            return redirect()->route('visitor.package_create')->with('error', 'ERROR: Minimum 25 persons required');
+        }
+
+        //initiate an empty array
+        $products = array();
+
+        //Fetch data from database
+        if($venue_id != 0){
+            $venue = Venue::find($venue_id);
+            $venue_price = $venue->price;
+            $products['venue'] = $venue;
+        }else{
+            $venue_price = 0;
+        }        
+
+        if($food_id != 0){
+            $food = Food::find($food_id);
+            $products['food'] = $food;
+            $food_p = $food->price;
+        //todo
+            $food_price = $food_p * $people;
+        }else{
+            $food_price = 0;
+        }
+
+        if($photo_id != 0){
+            $photography = Photography::find($photo_id);
+            $products['photo'] = $photography;
+        //todo
+            $photography_price = $photography->price;
+        }else{
+            $photography_price = 0;
+        }
+
+        if($sound_id != 0){
+            $sound = Sound::find($sound_id);
+            $products['sound'] = $sound;
+            $sound_price = $sound->price;
+        }else{
+            $sound_price = 0;
+        }
+
+        if($stages_id != 0){
+            $stage = Stage::find($stages_id);
+            $products['stage'] = $stage;
+        //todo
+            $stage_price = $stage->price;
+        }else{
+            $stage_price = 0;
+        }
+        //Calculate the total price
+        $price = $venue_price + $food_price + $photography_price + $sound_price + $stage_price;
+
+        //price validation
+        if($price != 0){
+            $package = new Package;
+
+        $package->food_id = $food_id;
+        $package->venue_id = $venue_id;
+        $package->photography_id = $photo_id;
+        $package->sound_id = $sound_id;;
+        $package->stages_id = $stages_id;
+        $package->people = $people;
+        $package->creator = $request->input('email');
+        $package->body = $request->input('body');
+        $package->type = $date;
+        $package->amount = $price;
+        
+        $package->save();
+
+        return view('visitor.payment', compact('package', 'products'));
+
+        }else{
+            return redirect()->route('visitor.package_create')->with('error', 'ERROR: You did not select any service');
+        }
+
+    }
+    public function package_create_food(){
+        $foods = Food::all();
+        $venues = Venue::all();
+        $photos = Photography::all();
+        $stages = Stage::all();
+        $sounds = Sound::all();
+        return view('visitor.package_create_food', compact('foods', 'venues', 'photos', 'stages', 'sounds'));
+    }
+    public function package_create_venue(){
+        $foods = Food::all();
+        $venues = Venue::all();
+        $photos = Photography::all();
+        $stages = Stage::all();
+        $sounds = Sound::all();
+        return view('visitor.package_create_venue', compact('foods', 'venues', 'photos', 'stages', 'sounds'));
+    }
+    public function package_create_photo(){
+        $foods = Food::all();
+        $venues = Venue::all();
+        $photos = Photography::all();
+        $stages = Stage::all();
+        $sounds = Sound::all();
+        return view('visitor.package_create_photo', compact('foods', 'venues', 'photos', 'stages', 'sounds'));
+    }
+    public function package_create_sound(){
+        $foods = Food::all();
+        $venues = Venue::all();
+        $photos = Photography::all();
+        $stages = Stage::all();
+        $sounds = Sound::all();
+        return view('visitor.package_create_sound', compact('foods', 'venues', 'photos', 'stages', 'sounds'));
+    }
+    public function package_create_stage(){
+        $foods = Food::all();
+        $venues = Venue::all();
+        $photos = Photography::all();
+        $stages = Stage::all();
+        $sounds = Sound::all();
+        return view('visitor.package_create_stage', compact('foods', 'venues', 'photos', 'stages', 'sounds'));
+    }
+
 }

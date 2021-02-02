@@ -16,9 +16,9 @@
     </div>
   </div>
   <a href="/contact" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
-  @if(Auth::guest())
+
   <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Login"><i class="fa fa-sign-in"></i></a>
-  @endif
+ 
  </div>
 
   <!-- Navbar on small screens -->

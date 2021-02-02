@@ -21,10 +21,12 @@
 			</div>
 			<div class="col-sm-7">
 				<h2" style="font-size:3rem;"> <small>Venue:</small> {{$venue->name}} </h2>
-				<h5 style="font-size:2rem;">Price: {{$venue->pricing}} BDT</h5>
-				<p style="font-size:2rem;">Capacity: {{$venue->capacity}} persons</p>
-				<p style="font-size:2rem;">Quality: {{$venue->venue_tag}} </p>				
+				<h5 style="font-size:2rem;">Price: {{$venue->price}} BDT</h5>
+				<p style="font-size:2rem;">Capacity: {{$venue->capacity}} persons</p>			
 			</div>
+		</div>
+		<div style="">
+			{!!$venue->body!!}
 		</div>
 	</div>
 </body>

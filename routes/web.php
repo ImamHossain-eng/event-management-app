@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,24 +16,21 @@ Route::post('/', 'FrontController@feedback_message');
 
 //Route::post('/', 'ViewController@contact')->name('contact.store');
 
-
 Auth::routes();
 //all user routes
 
 Route::prefix('home')->group(function () {
   Route::get('/', 'HomeController@index')->name('home');
-  Route::get('/order', 'OrderController@order_index')->name('user.order_index');
-  Route::get('/order/create', 'OrderController@order_create')->name('user.order_create');
-  Route::post('/order', 'OrderController@order_store')->name('user.order_store');
   Route::get('/packages', 'OrderController@package_all')->name('user.package_all');
   Route::get('/packages/create', 'OrderController@package_create')->name('user.package_create');
   Route::post('/packages', 'OrderController@package_store')->name('user.package_store');
   Route::get('/packages_index', 'OrderController@package_index')->name('user.package_index');
+  Route::delete('/packages/{id}', 'OrderController@package_destroy')->name('user.package_destroy');
   Route::get('/payment/{id}', 'OrderController@payment_create')->name('user.payment_create');
+  Route::post('/payment', 'PaymentController@payment')->name('user.payment');
+  Route::get('/payment_info', 'OrderController@payment_info');
 
 });
-
-
 
 
 //Admin Route
@@ -113,6 +111,9 @@ Route::prefix('admin')->group(function () {
   Route::post('/images', 'BackController@photo_store')->name('admin.photo_store');
   Route::delete('/images/{id}', 'BackController@photo_destroy')->name('admin.photo_destroy');
 
+  //
+  Route::get('/payment_info', 'BackController@payment_info');
+
   
 
 
@@ -137,10 +138,41 @@ Route::get('/sounds/{id}', 'FrontController@sound_show');
 Route::get('/decoration', 'FrontController@decoration');
 Route::get('/decoration/{id}', 'FrontController@decoration_show');
 //view all package
-Route::get('/packages', 'FrontController@packages_all');
+Route::get('/packages', 'FrontController@packages_all')->name('packages');
 Route::get('/package/{id}', 'FrontController@package_show');
 //Contact View
 Route::get('/contact', 'FrontController@contact');
+
+//for visitor features
+Route::get('/packages/create', 'FrontController@Package_create')->name('visitor.package_create');
+Route::post('/packages', 'FrontController@package_store')->name('visitor.package_store');
+Route::post('/visitor/payment', 'PaymentController@paid')->name('visitor.package_paid');
+
+Route::get('/payment/create/food-view', 'FrontController@package_create_food')->name('visitor.package_food');
+Route::get('/payment/create/venue-view', 'FrontController@package_create_venue')->name('visitor.package_venue');
+Route::get('/payment/create/photography-view', 'FrontController@package_create_photo')->name('visitor.package_photo');
+Route::get('/payment/create/sound-view', 'FrontController@package_create_sound')->name('visitor.package_sound');
+Route::get('/payment/create/decoration-view', 'FrontController@package_create_stage')->name('visitor.package_stage');
+
+
+
+
+
+//SSLCOMMERZ START
+Route::get('/example1', 'SslCommerzPaymentController@exampleEasyCheckout');
+Route::get('/example2', 'SslCommerzPaymentController@exampleHostedCheckout');
+
+Route::post('/pay', 'SslCommerzPaymentController@index');
+Route::post('/pay-via-ajax', 'SslCommerzPaymentController@payViaAjax');
+
+Route::post('/success', 'SslCommerzPaymentController@success');
+Route::post('/fail', 'SslCommerzPaymentController@fail');
+Route::post('/cancel', 'SslCommerzPaymentController@cancel');
+
+Route::post('/ipn', 'SslCommerzPaymentController@ipn');
+//SSLCOMMERZ END
+
+Route::post('/payment', 'PaymentController@paid');
 
 
 

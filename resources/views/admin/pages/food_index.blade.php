@@ -6,22 +6,22 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
+			<th>ID</th>
 			<th>Name</th>
 			<th>Price</th>
-			<th>Category</th>
 			<th>Created</th>
+			<th>Option</th>
 		</tr>
     </thead>
     <tbody>
     	@foreach($foods as $food)
     		<tr>
+    			<td> {{ $food->id }} </td>
     			<td> {{$food->name}} </td>
     			<td> {{$food->price}} </td>
-    			<td> {{$food->category}} </td>
-    			<td> {{$food->created_at->diffForHumans()}}
-
-
-    				<a href="foods/{{$food->id}}/edit" class="btn btn-primary">
+    			<td> {{$food->created_at->diffForHumans()}}	</td>
+    			<td>
+    					<a href="foods/{{$food->id}}/edit" class="btn btn-primary">
 					<i class="fa fa-pen"></i>
 				</a>
 
@@ -31,11 +31,6 @@
 					<i class="fa fa-trash"></i>
 				</button>
 				{{Form::close()}}
-
-
-
-
-
     			</td>
     		</tr>
     	@endforeach

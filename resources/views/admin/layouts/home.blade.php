@@ -40,7 +40,8 @@
   <a href="/admin/stages" class="w3-bar-item w3-button">Stages</a>  
   <a href="/admin/images" class="w3-bar-item w3-button">Photos</a>
   <a href="/admin/packages" class="w3-bar-item w3-button">Packages</a>
-  <a href="#" class="w3-bar-item w3-button">Link 3</a>
+  <a href="/admin/payment_info" class="w3-bar-item w3-button">Payment_info</a>
+  <a href="#" class="w3-bar-item w3-button">Link</a>
   <div>
         <a class="w3-bar-item w3-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> 
@@ -61,6 +62,7 @@
 </div>
 
 <div class="container">
+  @include('parts.message')
     @yield('content')
 </div>
 

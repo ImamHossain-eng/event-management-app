@@ -38,13 +38,13 @@
                 <img id="img" class="card-img-top" src="/images/food/{{$food->image}}" alt="Card image cap">
                 <div class="card-body">
                   <p class="card-text">{{$food->name}}</p>
-                  <p class="card-text">BDT: {{$food->price}} /= <small>Per Head</small> </p>
+                  <p class="card-text">BDT: {{$food->price}} /= <small>Per Person</small> </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                     <a href="/food_item/{{$food->id}}">
                       <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    </a>
-                      <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-shopping-cart"></i></button>
+                    </a><!--
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-shopping-cart"></i></button>-->
                     </div>
                     <small class="text-muted"> {{$food->created_at->diffForHumans()}} </small>
                   </div>

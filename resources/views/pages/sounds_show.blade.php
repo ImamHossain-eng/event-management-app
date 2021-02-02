@@ -23,11 +23,7 @@
 			</div>
 			<div class="col-sm-7">
 				<h2" style="font-size:3rem;">Service: {{$sound->name}} </h2>
-				<h5 style="font-size:2rem;">Price: {{$sound->price}} BDT</h5>
-				<p style="font-size:2rem;">Class: {{$sound->category}} </p>
-
-
-				
+				<h5 style="font-size:2rem;">Price: {{$sound->price}} BDT</h5>				
 			</div>
 		</div>
 	</div>

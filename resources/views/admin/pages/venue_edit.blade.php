@@ -15,16 +15,7 @@
 	<input type="text" name="capacity" class="form-control" Placeholder="Capacity" value="{{$venue->capacity}}">
 </div><br>
 <div class="from-group">
-	<input type="text" name="pricing" class="form-control" Placeholder="Pricing" value="{{$venue->pricing}}">
-</div><br>
-<div class="form-group">
-	<label for="">Category</label>
-<div class="from-group">
-	<select name="venues_tag">
-		<option value="poor">Poor</option>
-		<option value="middle">Middle Class</option>
-		<option value="rich">Rich</option>
-	</select>
+	<input type="text" name="price" class="form-control" Placeholder="Price" value="{{$venue->price}}">
 </div><br>
 
 <div class="form-group">
